@@ -40,7 +40,7 @@ spotifyApi
     .searchArtists(data)
     .then(data => {
       console.log('The received data from the API: ', data.body);
-       res.render (`artist-search`, {artist:data.body})
+       res.render (`artist-search-results`, {artist:data.body.artists.items})
     
       })
       .catch(err => console.log('The error while searching artists occurred: ', err));
