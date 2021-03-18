@@ -47,7 +47,41 @@ spotifyApi
     }
     )
     
-  
+
+
+    app.get("/albums/:artistId", (req, res) => { 
+     
+      const artistId = req.params.artistId
+
+      spotifyApi
+      .getArtistAlbums(artistId)
+      .then (data => { 
+        console.log(`Artist album:`,data.body)
+        res.render(`albums`, {album:data.body.items})
+      })
+        .catch(err => console.log('The error: ', err));
+      
+    }
+    )
+
+
+    app.get("/view-tracks/:albumId", (req, res) => { 
+     
+      const albumId = req.params.albumId
+
+      spotifyApi
+      .getAlbumTracks(albumId)
+      .then (data => { 
+        console.log(`tracks:`,data.body)
+        res.render(`tracks`, {tracks:data.body.items})
+      })
+        .catch(err => console.log('The error: ', err));
+      
+    }
+    )
+
+
+
 // Our routes go here:
 /*
 app.get("/artist-search/", (req,res)=> { 
